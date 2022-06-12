@@ -56,8 +56,10 @@ char *read_lines(int fd, char *s_str, char *buf)
 	while(!ft_strchr(buf, '\n') && !ft_strchr(buf, '\0'))
 	{
 		read_count = read(fd, temp, BUFFER_SIZE);
-		if(read_count == -1) //doesnt check for read_count = 0
+		if(read_count == -1)
 			return (NULL);
+		if(read_count == 0) //redundant?
+			break;
 		buf = ft_strjoin(buf, temp); //Frees temp
 	}
 	buf = edit_buf_and_s_str(s_str, buf);
