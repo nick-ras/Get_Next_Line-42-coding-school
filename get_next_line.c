@@ -1,26 +1,26 @@
 #include "get_next_line.h"
 
- char *put_s_str_leftover_in_buf(char *s_str)
+char	*put_s_str_leftover_in_buf(char *s_str)
 {
-	char * buf;
-	int	i;
+	char	*buf;
+	int		i;
 
 	i = 0;
 	buf = malloc(BUFFER_SIZE + 1 * sizeof(char));
-	while(s_str[i] != '\0')
+	while (s_str[i] != '\0')
 	{
 		buf[i] = s_str[i];
 		s_str[i] = '\0';
 	}
 	buf[i] = '\0';
-	return(buf);
+	return (buf);
 }
 
-char *edit_buf_and_s_str(char *s_str, char *buf_t)
+char	*edit_buf_and_s_str(char *s_str, char *buf_t)
 {
 	char	*buf;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -32,7 +32,7 @@ char *edit_buf_and_s_str(char *s_str, char *buf_t)
 		buf[i] = buf_t[i];
 	buf[i] = '\0';
 	i++;
-	while(buf_t[i] != '\0')
+	while (buf_t[i] != '\0')
 	{
 		s_str[j] = buf_t[i];
 		buf_t = '\0';
@@ -42,52 +42,51 @@ char *edit_buf_and_s_str(char *s_str, char *buf_t)
 	while (j < BUFFER_SIZE)
 		s_str[j] = '\0';
 	free(buf_t);
-	return(buf);
+	return (buf);
 }
 
-char *read_lines(int fd, char *s_str, char *buf)
+char	*read_lines(int fd, char *s_str, char *buf)
 {
-	int	read_count;
-	char *temp;
-	char *temp_total;
+	int		read_count;
+	char	*temp;
 
 	temp = malloc(BUFFER_SIZE + 1 * sizeof(char));
 	read_count = 0;
-	while(!ft_strchr(buf, '\n') && !ft_strchr(buf, '\0'))
+	while (!ft_strchr(buf, '\n') && !ft_strchr(buf, '\0'))
 	{
 		read_count = read(fd, temp, BUFFER_SIZE);
-		if(read_count == -1)
+		if (read_count == -1)
 			return (NULL);
-		if(read_count == 0) //redundant?
-			break;
+		if (read_count == 0) //redundant?
+			break ;
 		buf = ft_strjoin(buf, temp); //Frees temp
 	}
 	buf = edit_buf_and_s_str(s_str, buf);
-	return(buf);
+	return (buf);
 }
-
 
 char	*get_next_line(int fd)
 {
+	printf("hi");
 	static char	s_str[BUFFER_SIZE];
-	char    *buf;
-	char    *buf_new;
+	char		*buf;
+	char		*buf_new;
 
+	printf("%p", s_str);
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= __INT_MAX__)
 		return (NULL);
-
-	if(ft_strchr(s_str, '\n'))
+	if (ft_strchr(s_str, '\n'))
 	{
 		buf = put_s_str_leftover_in_buf(s_str);
 		buf_new = edit_buf_and_s_str(s_str, buf);
 		free(buf);
-		return(buf_new);
+		return (buf_new);
 	}
 	else
 	{
 		buf = put_s_str_leftover_in_buf(s_str);
 		buf_new = read_lines(fd, s_str, buf);
 		free(buf);
-		return(buf_new);
+		return (buf_new);
 	}
 }
