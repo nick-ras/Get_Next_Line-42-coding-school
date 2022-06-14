@@ -4,21 +4,24 @@ char	*put_s_str_leftover_in_buf(char *s_str)
 {
 	char	*buf;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	/* while (i < BUFFER_SIZE + 1)
+	while (s_str[i] != '\n' && s_str[i] != '\0')
 	{
-		//write(1, "5\n", 2);
-		buf[i++] = '\0';
-	} */
+		buf[i] = s_str[i];
+		i++;
+	}
+	if (s_str[i] == '\n')
+		buf[i++] = '\n';
+	buf[i] = '\0';
 	while (s_str[i] != '\0')
 	{
-		//write(1, &s_str[i], 1);
-		buf[i] = s_str[i];
-		s_str[i] = '\0';
+		s_str[j++] = s_str[i++];
 	}
-	buf[i] = '\0';
+	s_str[j] = '\0';
 	return (buf);
 }
 
@@ -27,19 +30,25 @@ char	*edit_buf_and_s_str(char *s_str, char *buf)
 	int		i;
 	int		j;
 
-	while (buf[i] != '\n' && buf[i] != '\0')
+	printf("\ntotal sting to edit\n%s\nand now what goes into output string\n", buf);
+	while (buf[i] != '\0')
 	{
 		write(1, buf + i, 1);
-		printf("%i", i);
+		printf("\n");
 		i++;
+		if (buf[i - 1] == '\n')
+			break;
 	}
 	j = 0;
 	while (buf[i] != '\0')
 	{
-		s_str[j++] = buf[i++];
-		buf[i++] = '\0';
+		s_str[j++] = buf[i];
+		buf[i] = '\0';
+		i++;
 	}
 	s_str[j] = '\0';
+	printf("\nnow what gets into buffer\n");
+	printf("%s\n", s_str);	
 	//write(1, "hio\n", 4);
 	return (buf);
 }
@@ -74,7 +83,7 @@ char	*read_lines(int fd, char *s_str, char *buf)
 	}
 	//write(1, "huy\n", 4);
 	free(temp);
-	//edit_buf_and_s_str(s_str, buf);  //if read count is lower than buf size
+	edit_buf_and_s_str(s_str, buf);  //if read count is lower than buf size
 	return (buf); 
 }
 
@@ -92,9 +101,11 @@ char	*get_next_line(int fd)
 		s_str[0] = '\0';
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= __INT_MAX__)
 		return (NULL);
+	printf("static string %s--------------------------\n", s_str);
 	if (ft_strchr(s_str, '\n'))
 	{
-		buf = put_s_str_leftover_in_buf(s_str);
+		printf("new line found in s_str\n");
+		buf = put_s_str_leftover_in_buf(s_str); //HEREHEREHERHERHERHER
 		printf("leftover values %s\n", buf);
 		//buf_new = buf;
 		//buf = edit_buf_and_s_str(s_str, buf);
