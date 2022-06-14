@@ -6,16 +6,12 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:45:08 by nickras           #+#    #+#             */
-/*   Updated: 2022/06/14 18:01:33 by nickras          ###   ########.fr       */
+/*   Updated: 2022/06/14 18:24:21 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
 
 # include <stdlib.h>
 # include <unistd.h>

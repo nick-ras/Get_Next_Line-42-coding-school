@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/14 18:02:50 by nickras           #+#    #+#             */
+/*   Updated: 2022/06/14 18:04:35 by nickras          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*put_s_str_leftover_in_buf(char *s_str)
@@ -59,8 +71,8 @@ char	*read_lines(int fd, char *s_str, char *buf)
 			return (NULL);
 		else if (read_count == 0)
 		{
-			if(buf[0] == '\0')
-				return (NULL);%s\n", buf);
+			if (buf[0] == '\0')
+				return (NULL);
 			free(temp);
 			return (buf);
 		}
@@ -70,8 +82,8 @@ char	*read_lines(int fd, char *s_str, char *buf)
 		free(char_ptr);
 	}
 	free(temp);
-	edit_buf_and_s_str(s_str, buf); 
-	return (buf); 
+	edit_buf_and_s_str(s_str, buf);
+	return (buf);
 }
 
 char	*get_next_line(int fd)

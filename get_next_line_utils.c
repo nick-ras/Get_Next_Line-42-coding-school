@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/14 18:02:47 by nickras           #+#    #+#             */
+/*   Updated: 2022/06/14 18:05:08 by nickras          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -46,11 +58,13 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dstr);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*concat;
 	size_t		count;
 	size_t		lenconcat;
+
 	lenconcat = 0;
 	count = 0;
 	while (s1[count++] != '\0')
