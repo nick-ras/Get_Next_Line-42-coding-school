@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:45:08 by nickras           #+#    #+#             */
-/*   Updated: 2022/06/14 18:24:21 by nickras          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:47:19 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <fcntl.h>
 
 char	*put_s_str_leftover_in_buf(char *s_str);
-char	*edit_buf_and_s_str(char *s_str, char *buf);
-char	*read_lines(int fd, char *s_str, char *buf);
+void	edit_buf_and_s_str(char *s_str, char *buf);
+char	*read_lines(int fd, char *s_str, char *buf, char *temp);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

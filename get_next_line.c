@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 18:02:50 by nickras           #+#    #+#             */
-/*   Updated: 2022/06/14 18:04:35 by nickras          ###   ########.fr       */
+/*   Created: 2022/06/17 18:55:19 by nickras           #+#    #+#             */
+/*   Updated: 2022/06/17 18:55:23 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,19 @@ char	*put_s_str_leftover_in_buf(char *s_str)
 	return (buf);
 }
 
-char	*edit_buf_and_s_str(char *s_str, char *buf)
+void	edit_buf_and_s_str(char *s_str, char *buf)
 {
 	int		i;
 	int		j;
 
-	while (buf[i] != '\0')
-	{
+	i = 0;
+	if (!buf)
+		return ;
+	while (buf[i] != '\0' && buf[i] != '\n')
 		i++;
-		if (buf[i - 1] == '\n')
-			break ;
-	}
 	j = 0;
+	if (buf[i] == '\n')
+		i++;
 	while (buf[i] != '\0')
 	{
 		s_str[j++] = buf[i];
@@ -54,26 +55,25 @@ char	*edit_buf_and_s_str(char *s_str, char *buf)
 		i++;
 	}
 	s_str[j] = '\0';
-	return (buf);
 }
 
-char	*read_lines(int fd, char *s_str, char *buf)
+char	*read_lines(int fd, char *s_str, char *buf, char *temp)
 {
 	int		read_count;
-	char	*temp;
 	char	*char_ptr;
 
 	temp = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	while (!ft_strchr(buf, '\n'))
 	{
 		read_count = read(fd, temp, BUFFER_SIZE);
-		if (read_count == -1)
-			return (NULL);
-		else if (read_count == 0)
+		if (read_count <= 0)
 		{
-			if (buf[0] == '\0')
-				return (NULL);
 			free(temp);
+			if (read_count == -1 || buf[0] == '\0')
+			{
+				free(buf);
+				return (NULL);
+			}
 			return (buf);
 		}
 		temp[read_count] = '\0';
@@ -94,19 +94,15 @@ char	*get_next_line(int fd)
 	if (!s_str[0])
 		s_str[0] = '\0';
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= __INT_MAX__)
+	{
 		return (NULL);
-	printf("static string %s --------------------------\n", s_str);
+	}
 	if (ft_strchr(s_str, '\n'))
 		return (put_s_str_leftover_in_buf(s_str));
 	else
 	{
-		//printf("else statement\n");
 		buf = put_s_str_leftover_in_buf(s_str);
-		// printf("-%c-\n", buf[0]); //tests of string is '\0'
-		// printf("leftover values %s <-\n", buf);
-		buf = read_lines(fd, s_str, buf);
-		//printf("end GNL\n");
-		//if buf = NULL then zero out s_str
+		buf = read_lines(fd, s_str, buf, NULL);
 		return (buf);
 	}
 }
