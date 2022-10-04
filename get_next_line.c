@@ -12,6 +12,11 @@
 
 #include "get_next_line.h"
 
+//if static buffer contains newline character. It copies everyting until newline
+//into a new string and return it to the calling function.
+//the static buffer is being modified so that everyting after the newline overwrites
+//what was being copied to the buffer. So the character after first newline character is 
+//at index 0, and therefor overwritting everything everything until and including the first newline.
 char	*put_s_str_leftover_in_buf(char *s_str)
 {
 	char	*buf;
@@ -35,6 +40,9 @@ char	*put_s_str_leftover_in_buf(char *s_str)
 	return (buf);
 }
 
+//Adds the characters after the newline character to
+//the static variable. This function is used when the readcall 
+//contain a newline
 void	edit_buf_and_s_str(char *s_str, char *buf)
 {
 	int		i;
@@ -57,6 +65,9 @@ void	edit_buf_and_s_str(char *s_str, char *buf)
 	s_str[j] = '\0';
 }
 
+//This mallocs space to save the output from a read call. It read until it 
+//it find a newline or null character. Everytime it makes a read call it adds that string to
+//the current string, if any.
 char	*read_lines(int fd, char *s_str, char *buf, char *temp)
 {
 	int		read_count;
@@ -86,6 +97,9 @@ char	*read_lines(int fd, char *s_str, char *buf, char *temp)
 	return (buf);
 }
 
+//This is the starting function. This function takes a filedescriptor for the file
+//that it needs to read from. The buffer size of the static variable can be altered
+// depending on how many bytes you want the function to read from the file at a time.
 char	*get_next_line(int fd)
 {
 	static char	s_str[BUFFER_SIZE];

@@ -12,6 +12,7 @@
 
 #include "get_next_line.h"
 
+//does the same as strlen function - see man
 size_t	ft_strlen(const char *s)
 {
 	size_t	count;
@@ -24,6 +25,7 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
+//does the same as strchr function - see man
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	length;
@@ -40,6 +42,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+//does the same as memcpy function - see man
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
@@ -59,6 +62,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dstr);
 }
 
+//does the same as strjoin function - see man
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*concat;
