@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:45:08 by nickras           #+#    #+#             */
-/*   Updated: 2022/06/17 18:47:19 by nickras          ###   ########.fr       */
+/*   Updated: 2022/11/29 12:58:33 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
+# define BUFFER_SIZE 100
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
