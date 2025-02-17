@@ -31,13 +31,31 @@ Handling Buffer Overflow and State:
 Since the function needs to handle multiple file descriptors, it must maintain the state of each file descriptor independently. For example, if you call the function multiple times on the same file descriptor, the function should return the subsequent lines correctly.
 
 Edge Cases:
+
 Handle files that are empty, have one line, or are very large.
 Handle lines that are longer than the buffer size.
 Deal with the special case of EOF and error conditions without crashing.
 Efficiency:
-Efficient memory handling and reading from the file descriptor in small increments are essential to avoid unnecessary memory usage and per
+Efficient memory handling and reading from the file descriptor in small increments are essential to avoid unnecessary memory usage and performance issues.
 
+Running It:
+To compile and run the project, follow these steps:
 
-Running it:
+Compile the Code:
+
+bash
+Copy
+Edit
 gcc -Wall -Wextra -Werror get_next_line.c -o get_next_line
-./get_next_line <input_file> OR ./get_next_line
+Run the Program:
+
+To test the program with a specific input file:
+bash
+Copy
+Edit
+./get_next_line <input_file>
+Or, to run the program without an input file (for example, to read from stdin):
+bash
+Copy
+Edit
+./get_next_line
