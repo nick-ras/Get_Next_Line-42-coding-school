@@ -47,7 +47,7 @@ The challenge in this project is to manage reading and storing text incrementall
 ---
 
 ## Using it
-Try i out with this command the compiles, links, and executes program
+Try i out by. The follow 1. compiles c-files, 2. creates a static library by packaging obj files that is being statically linked into the main.c program and 3. executes it.
 ```bash
 gcc -Wall -Wextra -Werror -c get_next_line.c -o get_next_line.o && \
 gcc -Wall -Wextra -Werror -c get_next_line_utils.c -o get_next_line_utils.o && \
