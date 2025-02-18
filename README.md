@@ -46,7 +46,7 @@ The challenge in this project is to manage reading and storing text incrementall
 
 ---
 
-## How to execute
+## Using it
 Try i out with this command the compiles, links, and executes program
 ```bash
 gcc -Wall -Wextra -Werror -c get_next_line.c -o get_next_line.o && gcc -Wall -Wextra -Werror -c get_next_line_utils.c -o get_next_line_utils.o && ar rcs libget_next_line.a get_next_line.o get_next_line_utils.o && gcc -Wall -Wextra -Werror main.c -L. -lget_next_line -o get_next_line_program && ./get_next_line_program
